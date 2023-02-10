@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: appleapppod
+  labels:
+    app: appleapp
+spec:
+  containers:
+    - name: appleappcontainer
+      image: javeedit/apple_app
+      ports:
+        - containerPort: 8080
+...

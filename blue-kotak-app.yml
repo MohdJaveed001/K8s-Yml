@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kotakappdeployment
+spec:
+  replicas: 4
+  selector: 
+    matchLabels:
+      app: kotakapp
+      version: v1
+      color: blue
+  template:
+    metadata:
+      name: kotakapppod
+      labels: 
+        app: kotakapp
+        version: v1
+        color: blue
+    spec:
+      containers:
+        - name: kotakappcontainer
+          image: javeedit/kotak_bank_app
+          ports:
+            - containerPort: 8080
+...

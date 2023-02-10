@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: luminousappdeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: luminousapp
+  template:
+    metadata:
+      name: luminousapppod
+      labels:
+        app: luminousapp
+    spec:
+      containers: 
+        - name: luminousappcontainer
+          image: javeedit/luminous_app
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: luminousappsvc
+spec:
+  type: LoadBalancer
+  selector: 
+      app: luminousapp
+  ports: 
+    - port: 80
+      targetPort: 8080
+
+...

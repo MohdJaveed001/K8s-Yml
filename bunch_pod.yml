@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bunchapppod
+  labels:
+    app: bunchapp
+spec:
+  containers:
+    - name: bunchappcontainer
+      image: javeedit/bunch_app
+      ports: 
+        - containerPort: 8080
+...

@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-resource
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: javeedit.click
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/java-web-app"
+            backend:
+              service: 
+                name: javawebappsvc
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/mavenwebapp"
+            backend:
+              service:
+                name: mavenwebappsvc
+                port:
+                  number: 80
+...

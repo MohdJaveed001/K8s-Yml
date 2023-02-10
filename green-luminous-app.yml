@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: luminousappdeployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: luminousapp
+      version: v2
+      color: green
+  template:
+    metadata:
+      name: luminousapppod
+      labels:
+        app: luminousapp
+        version: v2
+        color: green
+    spec:
+      containers:
+        - name: luminousappcontainer
+          image: javeedit/luminous_app
+          ports:
+            - containerPort: 8080
+...

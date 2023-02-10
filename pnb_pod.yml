@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: javapod
+spec:
+ containers:
+  - name: c1
+    image: javeedit/luminous_app
+    ports:
+      containerPort: 8080

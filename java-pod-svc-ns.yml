@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: javaapppod
+  labels:
+    app: javaapp
+  namespace: javeeditns
+spec:
+  containers:
+  - name: javaappcontainer
+    image: ashokit/javawebapp
+    ports:
+      - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: javaappsvc
+  namespace: javeeditns
+spec:
+  type: NordPort
+  selectors:
+    app: javaapp
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30001

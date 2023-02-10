@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ebaypod
+  labels:
+    app: ebay
+spec:
+  containers:
+    - name: ebaycontainer
+      image: javeedit/ebay
+      ports: 
+        - containerPort: 8080
+...

@@ -1,0 +1,34 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata: 
+  name: ebayapprc
+spec: 
+  replicas: 4
+  selector: 
+    app: ebayapp
+  template:
+    metadata:
+      name: ebayapppod
+      labels: 
+        app: ebayapp
+    spec: 
+      containers:
+        - name: ebayappcontainer
+          image: javeedit/ebay
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ebayappsvc
+spec:
+  type: NodePort
+  selector:
+    app: ebayapp
+  ports: 
+    - port: 80
+      targetPort: 8080
+      nodePort: 30006
+...

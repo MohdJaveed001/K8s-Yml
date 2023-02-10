@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kotakapprs
+spec:
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: kotakapp
+  template:
+    metadata:
+      name: kotakapppod
+      labels: 
+        app: kotakapp
+    spec:
+      containers:
+        - name: kotakappcontainer
+          image: javeedit/kotak_bank_app
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: kotakappsvc
+spec:
+  type: NodePort
+  selector:
+    app: kotakapp
+  ports:
+    - port: 80
+      targetPort: 8080
+      nodePort: 30001
+...

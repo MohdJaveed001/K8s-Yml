@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contactuideploymenet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: contactui
+  template:
+    metadata:
+      name: contactuipod
+      selector:
+        labels:
+          app: contactui
+      spec:
+        - containers:
+            name: contactuicontainers
+            image: javeedit/contactui
+            ports:
+              - contactbackendcontainer: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contactuisvc
+spec:
+  type: LoadBalancer
+  selector:
+    matchLabels:
+      app: contactui
+  ports:
+    - port: 80
+      targetPort: 80
+...
